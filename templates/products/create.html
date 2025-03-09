@@ -1,0 +1,25 @@
+{% extends 'products/base.html' %}
+{% block title %}
+<title>Create</title>
+<style>
+    .form{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 1vh;
+    }
+</style>
+{% endblock %}
+{% block body %}
+
+<div class="form">
+    <form action="{% url 'products:create' %}" method="post">
+        {% csrf_token %}
+        <h1>Data Creation Form</h1>
+        {{form.as_p}}
+        <input type="submit" class="btn btn-success" value="Create">
+    </form>
+    
+</div>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'order/base.html' %}
+{% block title %}
+<title>Create</title>
+<style>
+    .form{
+        width: 100%;
+        padding: 1vh;
+    }
+    .block{
+        width: 300px;
+        height: 200px;
+    }
+    .block h1{
+        width: 300px;
+        height: 100px;
+        overflow: hidden;
+        position: relative;
+    }
+</style>
+{% endblock %}
+{% block body %}
+
+<div class="form">
+    <div style="margin: 3vh;">
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>PRICE</th>
+                <th>EMAIL</th>
+                <th>ACTION</th>
+            </tr>
+            {% for i in products %}
+                <tr>
+                    <td>{{i.id}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.price}}</td>
+                    <td>{{i.email}}</td>
+                    <td>
+                        <div class="pagination">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    {% for o in orders %}
+                                    {% if o.product_id == i %}
+                                    {% if o == 1 %}
+                                    <li class="page-item disabled"><a class="page-link" href="{% url 'order:substractorder' i.id %}">-</a></li>
+                                    {% else %}
+                                    <li class="page-item"><a class="page-link" href="{% url 'order:substractorder' i.id %}">-</a></li>
+                                    {% endif %}
+                                    {% endif %}
+                                    {% empty %}
+                                    0
+                                    {% endfor %}
+                                    {% for o in orders %}
+                                    {% if o.product_id == i %}
+                                    <b class="btn btn-danger">
+                                        {{ o.count }}
+                                    </b>
+                                    {% endif %}
+                                    {% empty %}
+                                    0
+                                    {% endfor %}
+                                    {% for o in orders %}
+                                    {% if o.product_id == i %}
+                                    <li class="page-item"><a class="page-link" href="{% url 'order:addorder' i.id %}">+</a></li>
+                                    {% endif %}
+                                    {% empty %}
+                                    0
+                                    {% endfor %}
+                                </ul>
+                            </nav>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <button class="btn btn-primary">
+            Total:{{total}}
+        </button>
+    </div>
+</div>
+
+{% endblock %}

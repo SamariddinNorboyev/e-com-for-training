@@ -1,0 +1,36 @@
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-DQvkBjpPgn7RC31MCQoOeC9TI2kdqa4+BSgNMNj8v77fdC77Kj5zpWFTJaaAoMbC" crossorigin="anonymous">
+    {% block title %}
+        <title>Base</title>
+    {% endblock %}
+    <style>
+        .back{
+            width: 100%;
+            height: 100%;
+            border: 1px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(16deg, rgba(236,213,255,1) 0%, rgba(89,227,255,1) 100%);
+        }
+        .center{
+            min-width: 40%;
+            border: 1px solid black;
+            background-color: white;
+            padding: 2vh;
+            border-radius: 2vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="back">
+        <div class="center">
+            {% block body %}
+
+            {% endblock %}
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-YUe2LzesAfftltw+PEaao2tjU/QATaW/rOitAq67e0CT0Zi2VVRL0oC4+gAaeBKu" crossorigin="anonymous"></script>
+</body>
+</html>

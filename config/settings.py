@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     'products',
     'order',
+    'users',
+    'account_profiles',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'users.middlewares.AutoLogoutMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -118,8 +121,27 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
+AUTH_USER_MODEL = 'users.CustomUserModel'
+LOGIN_URL = '/users/login/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+GOOGLE_CLIENT_ID = "563263286229-o06c2jbf9rv2kj5f88gt6fa6edusndq5.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET = "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"
+GOOGLE_REDIRECT_URI = 'http://localhost:8000/users/google/login/callback/'
+GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/auth"
+GOOGLE_USER_INFO_URL = "https://www.googleapis.com/oauth2/v1/userinfo"
+GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token"
+
+
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "samariddin.grex@gmail.com"
+EMAIL_HOST_PASSWORD = "sxhq hevu qqjf euyt"

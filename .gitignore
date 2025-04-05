@@ -52,4 +52,4 @@ test-results/
 # PyCharm
 *.iml
 .idea/
-config/.env
+.env

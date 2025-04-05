@@ -129,19 +129,23 @@ LOGIN_URL = '/users/login/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+import os
+from dotenv import load_dotenv
 
-GOOGLE_CLIENT_ID = "563263286229-o06c2jbf9rv2kj5f88gt6fa6edusndq5.apps.googleusercontent.com"
-GOOGLE_CLIENT_SECRET = "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"
-GOOGLE_REDIRECT_URI = 'http://localhost:8000/users/google/login/callback/'
-GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/auth"
-GOOGLE_USER_INFO_URL = "https://www.googleapis.com/oauth2/v1/userinfo"
-GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token"
+load_dotenv()
+
+GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID')
+GOOGLE_CLIENT_SECRET = os.getenv('GOOGLE_CLIENT_SECRET')
+GOOGLE_REDIRECT_URI = os.getenv('GOOGLE_REDIRECT_URI')
+GOOGLE_AUTH_URL = os.getenv('GOOGLE_AUTH_URL')
+GOOGLE_USER_INFO_URL = os.getenv('GOOGLE_USER_INFO_URL')
+GOOGLE_TOKEN_URL = os.getenv('GOOGLE_TOKEN_URL')
 
 
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "samariddin.grex@gmail.com"
-EMAIL_HOST_PASSWORD = "sxhq hevu qqjf euyt"
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')

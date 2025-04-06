@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.views import View
 import requests
 from config import settings
+from profileinfo.models import Profile
 from .forms import LoginForm, RegisterModelForm, PasswordResetForm, RestorePasswordForm
 from .models import CustomUserModel
 from .service import send_email_async
@@ -30,7 +32,6 @@ class RegisterClassView(View):
         return render(request, 'users/register.html', {'form': form})
     def post(self, request):
         form = RegisterModelForm(request.POST)
-        print('salom')
         if form.is_valid():
             form.save()
             return redirect('users:login')
@@ -111,6 +112,8 @@ class RestorePasswordView(View):
         return render(request, 'users/restore-password.html', {'form': form})
 
 
+@login_required
 def profile(request):
     user = request.user
-    return render(request, 'users/profile.html', {'user': user})
+    profile = Profile.objects.filter(user = user).first()
+    return render(request, 'users/profile.html', {'user': user, 'profile': profile})

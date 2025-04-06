@@ -1,0 +1,18 @@
+{% extends 'products/base.html' %}
+{% block title %}
+    <title>
+    Profile Info
+    </title>
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="center" style="width: 50%; margin: auto">
+    <form action="{% url 'profile_info:profile' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-success" value="Submit">
+    </form>
+    </div>
+{% endblock %}
